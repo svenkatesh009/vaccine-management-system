@@ -15,6 +15,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,4 +88,12 @@ public class AppointmentService {
 
     }
 
+    public List<Doctor> doctorsWith10() {
+        List<Integer> docIds=appointmentRepository.getMore10App();
+        List<Doctor> doctorList=new ArrayList<>();
+        for(int id:docIds){
+            doctorList.add(doctorRepository.findById(id).get());
+        }
+        return doctorList;
+    }
 }

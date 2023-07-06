@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -81,4 +82,22 @@ public class DoctorService {
         return "Doctor has been associated to center";
 
     }
+
+    public String getDoctorRatio() {
+        int maleCount=doctorRepository.maleDoctorCount();
+        int femaleCount=doctorRepository.femaleDoctorCount();
+        return "The ratio between male and female dotor is :   "+maleCount/femaleCount;
+    }
+
+    public Doctor getDoctorByEmail(String email) throws DoctorNotFound {
+        Doctor doctor=doctorRepository.findByEmailId(email);
+        if(doctorRepository.findByEmailId(email)==null) throw new DoctorNotFound("Doctor email is invalid");
+        return doctor;
+    }
+
+    public List<String> getDoctorAbove40() {
+        return doctorRepository.getDoctorAbove40();
+    }
+
+
 }

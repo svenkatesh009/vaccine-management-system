@@ -1,11 +1,13 @@
 package com.example.Vaccine.Management.System.Controllers;
 import com.example.Vaccine.Management.System.Dtos.AppointmentReqDto;
+import com.example.Vaccine.Management.System.Models.Doctor;
 import com.example.Vaccine.Management.System.Services.AppointmentService;
+import com.example.Vaccine.Management.System.Services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.print.Doc;
+import java.util.List;
 
 @RestController
 @RequestMapping("/appointment")
@@ -25,4 +27,8 @@ public class AppointmentController {
         }
     }
 
+   @GetMapping("DoctorsWith10Appointment")
+    public List<Doctor> doctorsWith10(){
+        return appointmentService.doctorsWith10();
+   }
 }

@@ -40,4 +40,5 @@ public class VaccinationCenter {
     @OneToMany(mappedBy = "vaccinationCenter",cascade = CascadeType.ALL)
     private List<Doctor> doctorList = new ArrayList<>();
 
+
 }

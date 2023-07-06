@@ -14,7 +14,8 @@ public class DoseController {
     @Autowired
     DoseService doseService;
 
-    @PostMapping("/giveDose1")
+
+    @PostMapping("/giveDose")
     public String giveDose(@RequestParam("doseId")String doseId,@RequestParam("userId")Integer userId){
 
         return doseService.giveDose(doseId,userId);

@@ -1,17 +1,16 @@
 package com.example.Vaccine.Management.System.Controllers;
 
 import com.example.Vaccine.Management.System.Dtos.AssociateDocDto;
+import com.example.Vaccine.Management.System.Exceptions.DoctorNotFound;
 import com.example.Vaccine.Management.System.Models.Doctor;
 import com.example.Vaccine.Management.System.Services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.print.Doc;
+import java.util.List;
 
 @RestController
 @RequestMapping("/doctor")
@@ -42,6 +41,27 @@ public class DoctorController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/doctorRatio")
+    public String doctorRatio(){
+        return doctorService.getDoctorRatio();
+    }
+
+    @GetMapping("/getDetailsByEmail")
+    public ResponseEntity<Doctor> doctorByEmail(String email){
+        try{
+            Doctor doctor=doctorService.getDoctorByEmail(email);
+            return new ResponseEntity<>(doctor,HttpStatus.OK);
+        } catch (DoctorNotFound e) {
+            return new ResponseEntity<>(new Doctor(),HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+   @GetMapping("/doctorAbove40")
+    public List<String> getDoctorAbove40(){
+        return doctorService.getDoctorAbove40();
+   }
 
 
 
