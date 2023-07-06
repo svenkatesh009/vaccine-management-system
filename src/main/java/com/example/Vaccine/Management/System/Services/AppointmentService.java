@@ -76,7 +76,7 @@ public class AppointmentService {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        mailMessage.setFrom("springacciojob@gmail.com");
+        mailMessage.setFrom("projecttestingtesting333@gmail.com");
         mailMessage.setTo(user.getEmailId());
         mailMessage.setSubject("Appointment Confirmed !!");
         mailMessage.setText(body);
